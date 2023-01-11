@@ -101,14 +101,15 @@ struct Node
 class Solution
 {
 public:
-    
+    //searching kind of binary search since its bst
     bool search(Node* root , int val){
         if(!root) return false;
         if(val==root->data) return true;
         if(val>root->data) search(root->right, val);
         else search(root->left, val);
-        // return false;
     }
+    
+    //inorder traversal on first tree and search diff in other tree
     void solve(Node* root1, Node* root2 , int x,int &cnt){
         if(!root1) return;
         solve(root1->left, root2,x,cnt);
