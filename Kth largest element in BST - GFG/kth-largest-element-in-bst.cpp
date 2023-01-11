@@ -97,6 +97,8 @@ struct Node {
 class Solution
 {
     public:
+    //reverse inorder traversal ka use krenge toh fir kind of descending order mai elements mil jayge
+    //jab k ki val ==0 tab hume apna ans miljayga
     void func(Node* &root, int &k,int &val){
         if(!root || k<0) return;
 //right side traversal
