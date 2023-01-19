@@ -99,6 +99,34 @@ void inorder(struct Node* root)
 class Solution
 {
     public:
+//using intution of morris traversal...setting the left's most right to cur's right..for preorder..and cur(root's) right to cur's left..
+//thus will thread the tree 
+    void flatten(Node *root)
+    {
+        //code here
+        Node *curr=root;
+        while(curr){
+            //finding predessor if left exist
+            if(curr->left){
+                Node *temp=curr->left;
+                while(temp->right) temp=temp->right;
+                
+                temp->right=curr->right;
+                curr->right = curr->left;
+                curr->left = NULL;
+            }
+            //will move to right..if left is not there then simple right..otherwise also root's right will be set to 
+            //root's left after threading
+            curr=curr->right;
+        }
+    }
+};
+
+
+//another method
+class Solution
+{
+    public:
     void preOrder(Node *root, Node *&prev){
         if(!root) return;
         
