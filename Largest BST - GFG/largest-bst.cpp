@@ -109,26 +109,24 @@ class info{
 
 class Solution{
     public:
-//ek ek node pe ye dekh lenge ki uske left aur right bst hai ki ni , toh fir n*n time lagega
-//pr aise hum left ka max aur right ka min maintain kr lenge aur ye bhi ki cur node bst bann rhi ki nhi , agr koi nhi hogi to ans update nhi hoga fir
-//aise O(N) mai hojayga....
-
+    
     info solve(Node *root , int &ans){
-        if(!root) return {INT_MIN , INT_MAX , true,0};
+        if(!root) return {INT_MIN , INT_MAX,true,0};
         
-        info left = solve(root->left  , ans);
-        info right = solve(root->right , ans);
+        info left = solve(root->left , ans);
+        info right = solve(root->right,ans);
         
         info curNode;
-        curNode.size = left.size + right.size +1;
+        curNode.size= left.size + right.size + 1;
         curNode.maxi= max(root->data , right.maxi);
-        curNode.mini = min(root->data , left.mini);
-        if(left.isBst && right.isBst  && (root->data > left.maxi && root->data< right.mini)){
+        curNode.mini = min(root->data, left.mini);
+        
+        if(left.isBst && right.isBst && (root->data > left.maxi && root->data < right.mini)){
             curNode.isBst=true;
         }
-        else curNode.isBst = false;
+        else curNode.isBst =false;
         
-        if(curNode.isBst) ans= max(ans , curNode.size); 
+        if(curNode.isBst) ans = max(ans,curNode.size);
         
         return curNode;
     }
