@@ -109,6 +109,9 @@ class info{
 
 class Solution{
     public:
+//ek ek node pe ye dekh lenge ki uske left aur right bst hai ki ni , toh fir n*n time lagega
+//pr aise hum left ka max aur right ka min maintain kr lenge aur ye bhi ki cur node bst bann rhi ki nhi , agr koi nhi hogi to ans update nhi hoga fir
+//aise O(N) mai hojayga....
     
     info solve(Node *root , int &ans){
         if(!root) return {INT_MIN , INT_MAX,true,0};
