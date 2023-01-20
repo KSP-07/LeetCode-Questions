@@ -114,7 +114,7 @@ class Solution {
               Node* cur=root;
               while(cur!=NULL){
                   if(cur->left==NULL){
-                      if(up(cur, ++i , k,ans)){ flag=1; break;}   //checking if i==k
+                      if(up(cur, ++i , k,ans)){ flag=1;}   //checking if i==k
                       else cur=cur->right;
                   }
                   else{
@@ -128,7 +128,7 @@ class Solution {
                           cur=cur->left;   //now traversing for the left subtree;
                       }
                       else{    //thread is already present
-                        if(up(cur ,++i,k,ans)){ flag=1; break;}   //checking if now curr element i.e root is req element
+                        if(up(cur ,++i,k,ans)){ flag=1;}   //checking if now curr element i.e root is req element
                         pre->right=NULL;         //breaking the thread since we 
                         cur=cur->right;     //now traversing for the right subtree
                           
