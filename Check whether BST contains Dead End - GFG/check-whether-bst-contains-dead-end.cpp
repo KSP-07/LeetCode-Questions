@@ -101,11 +101,14 @@ int data;
 Node * right, * left;
 };*/
 
+//iss function mai left aur right subtree ka lower bound and upper bound pass krenge , agr dono equal hogyy toh mtlb wo dead end hai , kuki uska mtlb ye hoga ki
+//uss element se ek element smaller and ek element greater hai
 bool solve(Node* root , int min , int max){
     if(!root) return false;
     if(min==max) return true;
     return solve(root->left, min , root->data-1) or solve(root->right ,  root->data+1 ,max);
 }
+
 
 /*You are required to complete below method */
 bool isDeadEnd(Node *root)
