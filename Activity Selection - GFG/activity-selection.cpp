@@ -29,7 +29,7 @@ class Solution
         //jo meet sbse jada time legi wo last mai shift ho cuhki hogi sortine ke baad..to ab choti time ki meet aage hai
         //end time update kr denge jab koi new meet aaygi toh
         for(int i=1;i<n;i++){
-            if(end_time < v[i].second){
+            if(end_time < v[i].second){  //comparing ending time of prev meet with starting time of curr
                 count++;
                 end_time=v[i].first;
             }
