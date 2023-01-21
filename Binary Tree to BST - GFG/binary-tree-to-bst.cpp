@@ -139,9 +139,9 @@ class Solution{
         vector<int> ans;
         inorder(root , ans);
         int n=ans.size();
-        sort(ans.begin() , ans.end());
+        sort(ans.begin() , ans.end());   //kuki yaha sorted tree return nhi hoga binary tree tha isliye
         
-        Node * temp =   toBst(ans , 0 , ans.size()-1);
+        Node *temp =  toBst(ans , 0 , n-1);
         return temp;
     }
 };
