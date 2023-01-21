@@ -138,7 +138,6 @@ void solve(auto root, auto &prev){
         prev->next=root;
     }
     prev=root;
-    
     solve(root->right, prev);
 }
     void populateNext(Node *root)
