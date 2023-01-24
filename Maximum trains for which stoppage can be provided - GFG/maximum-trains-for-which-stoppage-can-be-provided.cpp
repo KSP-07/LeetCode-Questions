@@ -38,7 +38,7 @@ class Solution {
   public:
     int maxStop(int n, int m, vector<vector<int>> &trains) {
         // code here
-        vector<int>platform(n+1,0);
+        vector<int>platform(n+1,0);     //platforms ka hash type ka use krne ke liye , uski index platform number ki trh use krenge
         vector<pair<int,int>> v;
         
         for(int i=0;i<trains.size();i++){
