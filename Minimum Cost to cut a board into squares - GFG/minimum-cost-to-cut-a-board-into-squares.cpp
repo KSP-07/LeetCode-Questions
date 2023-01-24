@@ -30,7 +30,7 @@ public:
         //merge sort type ka working hai ab bss
         
         //X is vertical cut and Y is horizontal
-        while(i<M-1 && j<N-1){
+        while(i<M-1 && j<N-1){    //M array indexing ke acc 2 jada hai
             if(X[i]>Y[j]){
                 ans= ans + (vertical*X[i]);
                 horizontal++;   //cut krne ke baad pieces bdhenge...isliye ans phle nikal rhee
