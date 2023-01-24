@@ -52,7 +52,6 @@ public:
             ans= ans + (horizontal*Y[j]);
             j++;
         }
-        
         return ans;
     }
 };
