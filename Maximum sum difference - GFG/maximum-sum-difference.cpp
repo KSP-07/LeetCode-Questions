@@ -11,9 +11,7 @@ class Solution{
 public:
     int maxSum(int N){
         // code here
-        // if(N==2) return 1;
-        // N=N-1;
-        return (N*(N-1))/2  -1 + N/2;
+        return (N*(N-1))/2  -1 + N/2;   //formula for maximum sum absolute difference
     }
 };
 
