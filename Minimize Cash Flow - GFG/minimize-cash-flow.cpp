@@ -21,7 +21,7 @@ class Solution{
     
        int mxCred = max_element(amount.begin(),amount.end()) - begin(amount);
         int mxDebt = min_element(amount.begin(),amount.end()) - begin(amount); //finding the max element and min element in amount
-        //so this will be thee maximum to be paid and maximum a persong will get
+        //so this will be the maximum to be paid and maximum a persong will get
         
         //if both amount are 0 means that it's settled now
         if(amount[mxCred]==0 && amount[mxDebt]==0) return;
@@ -31,7 +31,7 @@ class Solution{
         amount[mxCred]-=mn;
         amount[mxDebt]+=mn;
         
-        ans[mxDebt][mxCred]=mn;
+        ans[mxDebt][mxCred]=mn;   //iska mtlb hai ki debt wale ne cred wale ko kitne pay kree
         
         minCashFlow(amount , ans);
         
