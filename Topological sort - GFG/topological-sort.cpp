@@ -15,7 +15,8 @@ class Solution
 	            dfs(i,  stk , vis , adj);
 	        }
 	    }
-	    stk.push(node);     
+	    stk.push(node);     //here when recursion stack will start calling back then we will store it in stack so that we store vth in stack as 
+	    //it will visit all the nodes then store recursively
 	}
 	
 	
