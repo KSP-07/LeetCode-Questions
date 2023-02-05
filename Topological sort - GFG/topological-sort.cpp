@@ -8,6 +8,9 @@ class Solution
 	public:
 	//Function to return list containing vertices in Topological order. 
 	
+	//using dfs algo
+	/*
+	
 	void dfs(int node , auto &stk , auto &vis , auto &adj){
 	    vis[node]=1;
 	    for(auto i:adj[node]){
@@ -43,6 +46,55 @@ class Solution
 	    }
 	    return ans;
 	}
+	
+	*/
+	
+	
+	//using bfs ( kahn's)...
+	//counting indegree of nodes , the one will 0 indegree will come first in topological sort
+	// so after taking in degree , we find 0th indegree nodes..push them in queue
+	//then we use bfs algo..pop from queue , push it in ans , find it's adjacent , reduce their indegree..if it gets 0..push in queue
+	
+	vector<int> topoSort(int V, vector<int> adj[]) {
+	    
+	    queue<int> q;
+	    
+	    vector<int> indegree(V,0);
+	    
+	    //sari node leni hai isliye 0 se V tkk traverse kr rhe
+	    for(int i=0 ;i<V;i++){
+	        //ab har node pe uske neighbours lerhe
+	        for(auto it:adj[i]){
+	            indegree[it]++;
+	        }
+	    }
+	    
+	    //ab queue mai 0th indegree wale push kr rhe
+	    for(int i=0;i<V;i++){
+	        if(indegree[i]==0) q.push(i);
+	    }
+	    
+	    //now typical bfs
+	    
+	    vector<int> ans;
+	    
+	    while(!q.empty()){
+	        int val = q.front();
+	        q.pop();
+	        ans.push_back(val);
+	        for(auto i:adj[val]){
+	            indegree[i]--;
+	            if(indegree[i]==0) q.push(i);
+	        }
+	    }
+	    
+	    return ans;
+	    
+	}
+	
+	
+	
+	
 };
 
 //{ Driver Code Starts.
