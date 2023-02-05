@@ -1,8 +1,3 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-// } Driver Code Ends
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
@@ -31,43 +26,48 @@ class Solution {
                 }
             }
         }
-        return false;
+        return 0;
     }
+    
+    
     
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-
         vector<int> vis(V,0);
         for(int i=0; i<V;i++){
             if(!vis[i]){
                 if(detect(i , adj , vis)) return true;
             }
         }
+        
         return false;
     }
-};
-
-//{ Driver Code Starts.
-int main() {
-    int tc;
-    cin >> tc;
-    while (tc--) {
-        int V, E;
-        cin >> V >> E;
-        vector<int> adj[V];
-        for (int i = 0; i < E; i++) {
-            int u, v;
-            cin >> u >> v;
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+    
+    
+    /*
+    using dfs algo and same parent concept
+    
+    bool detect(int src , int parent , auto &adj , auto &vis){
+        vis[src]=1; //updating the visited array for the curr node
+        for(auto i:adj[src]){   //visiting neighnours of curr node
+            if(!vis[i]){
+                if( detect(i , src, adj , vis ) return true;   //agr ans iss nayi node pe milta to return krdia
+            }
+            else if(i!=parent) return true;   //ab ek node visit ho chuki phle , dusre raaste se toh cycle hai
         }
-        Solution obj;
-        bool ans = obj.isCycle(V, adj);
-        if (ans)
-            cout << "1\n";
-        else
-            cout << "0\n";
+        return false;
     }
-    return 0;
-}
-// } Driver Code Ends
+    
+    bool isCycle(int V, vector<int> adj[]){
+    
+        vector<int> vis(V,0);
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                if( detect(i , -1, adj , vis ) return true;
+            }
+        }
+        return false;
+    }
+    
+    */
+};
