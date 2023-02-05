@@ -9,27 +9,59 @@ class Solution {
     
     //using bfs and dfs...
     
-    //using bfs , can be done by maintaining indegree or using topological sort
-    // bool isCyclic(int V, vector<int> adj[]) {
-    //     // code here
-    //     vector<int> vis(V,0);
-    //     queue<int> q;
-    //     q.push(0);
-    //     vis[0]=1;
-        
-    //     while(!q.empty()){
-    //         int data = q.front();
-    //         q.pop();
-    //         for(auto x:adj[data]){
-    //             if(vis[x]) return 1;
-    //             else{
-    //                 vis[x]=1;
-    //                 q.push(x);
-    //             }
-    //         }
-    //     }
-    //     return 0;
-    // }
+    /*
+    In Kahn's algorithm, a node only enters the queue if its indegree becomes zero 
+    and then it further decrements the indegree values of its adjacent nodes right. 
+    But in the case of cyclic graph , there will be a node from where the cycle will be starting and then coming to an end. 
+    So in order for the elements present in the cycle to get pushed into the queue, 
+    that cycle starting node's indegree must become zero right. 
+    But but but, that node's indegree will never become zero 
+    as one of the node from the cycle (the second last element) will be pointing towards the starting node.
+    Just imagine with a diagram in the video. So if that node's indegree will never become zero , 
+    then it will restrict its adjacent nodes(at least) to get evaluated and 
+    hence the total number of nodes getting pushed into the queue (cnt) will never become (=N).
+    */
+    
+    //using bfs , can be done by maintaining using topological sort and placing a counter on every pop from queue
+    //since , loop will not run for more than N times , if counter reaches the same than there is a cycle
+    
+    bool isCyclic(int V, vector<int> adj[]){
+        queue<int> q;
+	    
+	    vector<int> indegree(V,0);
+	    
+	    //sari node leni hai isliye 0 se V tkk traverse kr rhe
+	    for(int i=0 ;i<V;i++){
+	        //ab har node pe uske neighbours lerhe
+	        for(auto it:adj[i]){
+	            indegree[it]++;
+	        }
+	    }
+	    
+	    //ab queue mai 0th indegree wale push kr rhe
+	    for(int i=0;i<V;i++){
+	        if(indegree[i]==0) q.push(i);
+	    }
+	    
+	    //now typical bfs
+	    
+	    int cnt=0;
+	    
+	    while(!q.empty()){
+	        int val = q.front();
+	        q.pop();
+	        cnt++;
+	        for(auto i:adj[val]){
+	            indegree[i]--;
+	            if(indegree[i]==0) q.push(i);    //jis node pe cycle hogi wo push hii nhi hogi queue mai
+	        }
+	    }
+        if(cnt!=V) return true;     //cnt of ans of topo sort is not equal to the number of nodes
+        return false;
+    }
+    
+    
+    
     
     
     
@@ -38,7 +70,7 @@ class Solution {
     //already visted so it will prompt cycle , so what we can do is maintain a order..like setting element to 0 again in one of the vis array , so 
     //if there would be cycle , both vis array will have true values 
     
-    
+  /*  
   bool solve(int src , auto &vis , auto &order, vector<int> adj[]){
       vis[src]=1;
       order[src]=1;
@@ -67,6 +99,7 @@ class Solution {
         }
         return false;
     }
+    */
 };
 
 //{ Driver Code Starts.
