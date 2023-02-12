@@ -1,50 +1,113 @@
 class Solution {
 public:
-    int bfs(int i , int j , vector<vector<int>>& grid , int n ,int m){
+//     int bfs(int i , int j , vector<vector<int>>& grid , int n ,int m){
         
                 
+//         queue<pair<int,int>> q;
+        
+//         q.push({i,j});
+//         grid[i][j]=0;   //visited array ki jrurat na pdde isliye
+//         int res=1;  //ek push krdia na q mai kmse kam
+        
+//          vector<pair<int,int>> move = {{0,-1} , { 0,1} , {1,0} , {-1,0}};  //possible movements
+
+//         while(!q.empty()){
+//             int row = q.front().first;
+//             int col = q.front().second;
+//             q.pop();
+
+//             for(auto it: move){
+//                 int nrow = it.first + row;
+//                 int ncol = it.second + col;
+                
+//                 if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && grid[nrow][ncol]==1){
+//                     grid[nrow][ncol] = 0;
+//                     q.push({nrow , ncol});
+//                     res+=1;  //yaha aane ka mtlb hii yhii hai ki ek aur milgyaa
+//                 }
+//             }
+//         }
+//         return res;
+//     }
+    
+    //ith loc of 1 se bfs call krdenge....mutliple bfs call hongi kuki ek ek jagah se suru hoke toh khtm hii hojaygii pura q 
+    // int maxAreaOfIsland(vector<vector<int>>& grid) {
+//         int n = grid.size();
+//         int m = grid[0].size();
+//         vector<vector<int>> vis(n, vector<int>(m ,0));
+
+//          int maxi=0;
+//         for(int i=0;i<n;i++){
+//             for(int j=0;j<m;j++){
+//                 int temp=0;
+//                 if(grid[i][j]==1) temp=bfs(i , j , grid,n,m);
+//                 maxi= max(temp ,maxi);
+//             }
+//         }
+              
+//         return maxi;
+//     }
+        
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    int bfs(int n , int m , vector<vector<int>> &grid , vector<vector<int>> &vis , int i , int j){
         queue<pair<int,int>> q;
         
-        q.push({i,j});
-        grid[i][j]=0;   //visited array ki jrurat na pdde isliye
-        int res=1;  //ek push krdia na q mai kmse kam
-        
-         vector<pair<int,int>> move = {{0,-1} , { 0,1} , {1,0} , {-1,0}};  //possible movements
-
+        q.push({i , j});
+        grid[i][j]=0;
+        int res=1;
+        vector<pair<int,int>> move = {{-1,0} , {1,0} , {0,-1} , {0,1}};
         while(!q.empty()){
             int row = q.front().first;
             int col = q.front().second;
+            
             q.pop();
-
             for(auto it: move){
-                int nrow = it.first + row;
-                int ncol = it.second + col;
+                int nrow = row + it.first;
+                int ncol = col + it.second;
                 
                 if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && grid[nrow][ncol]==1){
-                    grid[nrow][ncol] = 0;
+                    grid[nrow][ncol]=0;
+                    res++;
                     q.push({nrow , ncol});
-                    res+=1;  //yaha aane ka mtlb hii yhii hai ki ek aur milgyaa
                 }
             }
         }
         return res;
     }
     
-    //ith loc of 1 se bfs call krdenge....mutliple bfs call hongi kuki ek ek jagah se suru hoke toh khtm hii hojaygii pura q 
-    int maxAreaOfIsland(vector<vector<int>>& grid) {
-        int n = grid.size();
+    
+    int maxAreaOfIsland(vector<vector<int>>& grid){
+        int n= grid.size();
         int m = grid[0].size();
-        vector<vector<int>> vis(n, vector<int>(m ,0));
-
-         int maxi=0;
+        
+        vector<vector<int>> vis(n , vector<int> (m,0));
+        
+        int ans=0;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                int temp=0;
-                if(grid[i][j]==1) temp=bfs(i , j , grid,n,m);
-                maxi= max(temp ,maxi);
+                if(grid[i][j]==1){
+                    int temp = bfs(n,m, grid , vis,i,j);
+                    // cout<<temp<<endl;
+                    ans=max(ans , temp);
+                }
             }
         }
-              
-        return maxi;
+        return ans;
     }
+        
+        
 };
