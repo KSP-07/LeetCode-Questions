@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //https://leetcode.com/problems/single-element-in-a-sorted-array/discuss/3212178/Day-52-oror-Binary-Search-oror-Easiest-Beginner-Friendly-Sol
     int singleNonDuplicate(vector<int>& nums) {
         int n = nums.size();
         if(n==1) return nums[0];
