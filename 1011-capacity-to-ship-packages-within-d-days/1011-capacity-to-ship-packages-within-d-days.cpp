@@ -17,10 +17,11 @@ public:
                 }
                 currWeight = currWeight + weight;
             }
+            //agar din jada lagre hai toh fir mid ko aage badadhana pdega mtlb , ki aur weight lejane ke liye krenge
             if (daysNeeded > days) {
                 maxWeight = midWeight + 1;
             } else {
-                totalWeight = midWeight;
+                totalWeight = midWeight;  //agar kam din mai hogyaa , to avg weight lejane wala kam krna pdega
             }
         }
         return maxWeight;
