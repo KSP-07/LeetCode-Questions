@@ -6,6 +6,7 @@ using namespace std;
 class Solution {
 public:
 
+//bfs chla ke , neighbour mai opp color store kr rhee , agar color same hotaa hai main node se toh vo bipartitre nhi hai
 
     bool check(int start , int V , vector<int> adj[] , vector<int> &color){
          queue<int> q;
