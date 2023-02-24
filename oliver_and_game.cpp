@@ -27,7 +27,7 @@ void dfs(int src,int par,vector<int> g[]){
 }
  
 bool check(int x,int y){
-    if(inTime[x]>inTime[y] and outTime[x]<outTime[y]) 
+    if(inTime[x]>inTime[y] and outTime[x]<outTime[y]) //checking that is x is subtree of y
         return true;
     return false;
 }
@@ -56,6 +56,7 @@ int32_t main() {
             cout<<"NO\n";
             continue;
         }
+        //bob ko oliver ke upar hona hoga 
         if(type==0){
             if(check(y,x))
                 cout<<"YES\n";
