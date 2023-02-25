@@ -59,12 +59,12 @@ int minSteps(int m, int n, int d)
 	            //Pour jug B ---> jug A
 	            if (m-x>0 and y>0)
 	            {
-	                if (x+y<m and !visited[x+y][0])
+	                if (x+y<=m and !visited[x+y][0])
 	                {
 	                    q.push({x+y,0});
 	                    visited[x+y][0]=1;
 	                }
-	                else if (x+y>m and !visited[m][y-(m-x)])
+	                else if (x+y>m and !visited[m][y-(m-x)]) //y-(m-x)--> itna pani bcha reh jayga y mai aur x full hojayga
 	                {
 	                    q.push({m, y-(m-x)});
 	                    visited[m][y-(m-x)]=1;
