@@ -1,3 +1,5 @@
+https://youtu.be/IZDyxrna9TA
+
 # Two water Jug problem
 ## Medium
 <div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">You are at the side of a river. You are given a&nbsp;<strong>m</strong>&nbsp;litre jug and a&nbsp;<strong>n</strong>&nbsp;litre jug . Both the jugs are initially empty. The jugs dont have markings to allow measuring smaller quantities. You have to use the jugs to measure d litres of water . Determine the minimum no of operations to be performed to obtain d litres of water in one of the jugs.<br>
