@@ -49,7 +49,7 @@ class Solution{
                 }
             }
             vector<vector<int>> ans(n , vector<int>(n,0));   //for storing ans
-            minCashFlow(amount , ans);   //find ing the min cash flow
+            minCashFlow(amount , ans);   //finding the min cash flow
             return ans;
         }
 };
