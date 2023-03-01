@@ -12,7 +12,7 @@ public:
             //k is checking that it's not equal to the node we colored and k is traversing for adjacent nodes
             //is any other node than the parent has same color val , it means the prev color is used and since
             // these node are adjacent, they can not have the same color, so false
-            if(k!= node && graph[k][node]==1 && color[k]==color_val ) return false;
+            if(k!= node && graph[k][node]==1 && color[k]==color_val ) return false;  // [k][node] is like if node is 0 , then 1 0 , 2 0 ,3 0...adjacent
         }
         return true;
     }
