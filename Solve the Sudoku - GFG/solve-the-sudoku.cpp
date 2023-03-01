@@ -15,9 +15,11 @@ class Solution
     public:
       bool isValid(int x,int y,int val,int grid[N][N]){
         for(int i=0;i<9;i++){
+            //col mai value check
             if(grid[x][i]==val){
                 return false;
             }
+            //row mai value check
             if(grid[i][y]==val){return false;}
             
             if(grid[3*(x/3)+i/3][3*(y/3)+i%3]==val){
@@ -33,7 +35,7 @@ class Solution
         for(int i=0;i<9;i++){
             for(int j=0;j<9;j++){
                 if(grid[i][j]==0){
-                    
+                    //number of values jo aaskti hai
                     for(int k=1;k<=9;k++){
                         if(isValid(i,j,k,grid)){
                             grid[i][j]=k;
