@@ -4,7 +4,7 @@ public:
         string temp = "";
         int n=chars.size();
         if(n==0 || n==1) return n;
-        // for(int i=0; chars[i]!='\0';i++) n++;
+
         for(int i=0;i <n;i++){
             temp+=chars[i];
             if(i<n-1 && chars[i]==chars[i+1]){
