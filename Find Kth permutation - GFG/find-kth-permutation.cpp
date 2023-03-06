@@ -13,6 +13,7 @@ class Solution
 public:
     string kthPermutation(int n, int k)
     {
+        //O(n2)
         // code here
         vector<int> numbers;
         int fact =1;
