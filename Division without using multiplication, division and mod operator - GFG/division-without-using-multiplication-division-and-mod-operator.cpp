@@ -28,8 +28,9 @@ class Solution
         {
             if(temp+ (divisor<<i)<=dividend)
             {
-                temp+=divisor<<i;
-                quotient+=(1LL<<i);
+                temp+=divisor<<i; 
+                // cout<<temp<<" "<< (divisor<<i)<<" "<<(1LL<<i)<<endl;
+                quotient+=(1LL<<i);    //With 1LL , you set the type to long long before hand and now it will properly return 2^40.
             }
         }
         
