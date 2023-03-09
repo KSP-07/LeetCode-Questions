@@ -29,7 +29,7 @@ public:
         ListNode *fast = head;
         ListNode *entry = head;
         
-        while(fast->next  && fast->next->next){
+        while(fast->next  && fast->next->next){     //if fast reaches NULL , there eas never a cycle
             slow = slow->next;
             fast = fast->next->next;
             
