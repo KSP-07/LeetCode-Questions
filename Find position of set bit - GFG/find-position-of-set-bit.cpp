@@ -13,7 +13,16 @@ class Solution {
         if(N & (N-1)) return -1;
         
         //uses space of log2
-        return log2(N) +1;
+        // return log2(N) +1;
+        
+        
+        //usign right shift
+        int cnt=0;
+        while(N){
+            cnt++;
+            N = N>>1;
+        }
+        return cnt;
     }
 };
 
