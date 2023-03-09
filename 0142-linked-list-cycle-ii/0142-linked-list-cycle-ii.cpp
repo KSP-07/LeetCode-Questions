@@ -8,13 +8,38 @@
  */
 class Solution {
 public:
+    //MAP BRUTE APPROACH
+    // ListNode *detectCycle(ListNode *head) {
+    //     ListNode *temp = head;
+    //     unordered_map <ListNode*,int> mp;
+    //     while(temp){
+    //         if(mp.find(temp) !=mp.end()) return temp;
+    //         mp[temp]++;
+    //         temp = temp->next;
+    //     }
+    //     return NULL;
+    // }
+    
+    
+    //floyd warshall tortoise and hare
     ListNode *detectCycle(ListNode *head) {
-        ListNode *temp = head;
-        unordered_map <ListNode*,int> mp;
-        while(temp){
-            if(mp.find(temp) !=mp.end()) return temp;
-            mp[temp]++;
-            temp = temp->next;
+        if(head==NULL || head->next==NULL) return NULL;
+        
+        ListNode *slow =head;
+        ListNode *fast = head;
+        ListNode *entry = head;
+        
+        while(fast->next  && fast->next->next){
+            slow = slow->next;
+            fast = fast->next->next;
+            
+            if(slow==fast){     //there is a cycle
+                while(slow!=entry){
+                    slow = slow->next;
+                    entry = entry->next;
+                }
+                return entry;
+            }
         }
         return NULL;
     }
