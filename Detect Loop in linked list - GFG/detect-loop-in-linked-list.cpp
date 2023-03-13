@@ -46,6 +46,7 @@ class Solution
 {
     public:
     //Function to check if the linked list has a loop.
+    //using tortoise and hare approach
     bool detectLoop(Node* head)
     {
         // your code here
