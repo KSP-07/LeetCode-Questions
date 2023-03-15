@@ -20,6 +20,7 @@ public:
             while (totalNodesInLevel--) {
                 TreeNode *currNode = storeNodes.front();
                 storeNodes.pop();
+                // cout<<currNode->val<<endl;
                 if (currNode == nullptr) {
                     isNullInBetweenNodes = true;
                 }
