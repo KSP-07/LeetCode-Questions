@@ -1,6 +1,7 @@
 # Minimum number of jumps
 ## Medium
-<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array of <strong>N</strong> integers <strong>arr[]</strong> where each element represents the max length of the jump that can be made forward from that element. Find&nbsp;the minimum number of jumps to reach the end of the array (starting from the first element).&nbsp;If an element is <strong>0</strong>, then you cannot move through that element.</span><br>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array of <strong>N</strong> integers <strong>arr[]</strong> where each element represents the <strong>maximum</strong> length of the jump that can be made forward from that element. This means if arr[i] = x, then we can jump any distance y such that y&nbsp;≤ x.<br>
+Find&nbsp;the minimum number of jumps to reach the end of the array (starting from the first element).&nbsp;If an element is <strong>0</strong>, then you cannot move through that element.</span><br>
 <br>
 <span style="font-size:18px"><strong>Note: </strong>Return -1 if you can't reach the end of the array.</span></p>
 
