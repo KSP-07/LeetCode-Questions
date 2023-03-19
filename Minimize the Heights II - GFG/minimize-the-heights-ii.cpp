@@ -23,7 +23,7 @@ class Solution {
         int mi , ma;
         
         for(int i=0;i<n-1;i++){
-            //alw
+            //always comparing with the inital smalles and largest
             mi = min( smallest , arr[i+1] - k);
             ma = max(largest , arr[i] + k);
             if(mi < 0) continue;
