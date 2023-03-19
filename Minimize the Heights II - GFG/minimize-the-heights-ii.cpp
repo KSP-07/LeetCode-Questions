@@ -9,6 +9,10 @@ using namespace std;
 
 class Solution {
   public:
+  
+  //concept according to me is that  , aage wala kam krke aur curr wala bdha ke hii diff min hoga
+  //to hum simultaneos check krte rhte ki aage wala kam krke aur abhi wala bdhayge to ans min hota ki nhi , aur ek suru mai le hii lete
+  //ki kuch nhi hua toh ye itna toh hai hiii
     int getMinDiff(int arr[], int n, int k) {
         // code here
         //this will place the smallest element on the first positon and the largest element on the last position
@@ -22,7 +26,7 @@ class Solution {
         int largest = arr[n-1] -k;
         int mi , ma;
         
-        for(int i=0;i<n-1;i++){
+        for(int i=0; i<n-1;i++){
             //always comparing with the inital smalles and largest
             mi = min( smallest , arr[i+1] - k);
             ma = max(largest , arr[i] + k);
