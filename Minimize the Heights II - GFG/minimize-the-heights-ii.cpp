@@ -22,15 +22,15 @@ class Solution {
         int ans = arr[n-1] - arr[0];
         
         //making inital changes on the first ans last element
-        int smallest = arr[0] + k;
-        int largest = arr[n-1] -k;
+        int inital_smallest = arr[0] + k;
+        int initial_largest = arr[n-1] -k;
         int mi , ma;
         
         for(int i=0; i<n-1;i++){
             //always comparing with the inital smalles and largest
-            mi = min( smallest , arr[i+1] - k);
-            ma = max(largest , arr[i] + k);
-            if(mi < 0) continue;
+            mi = min( inital_smallest , arr[i+1] - k);
+            ma = max(initial_largest , arr[i] + k);
+            if(mi < 0) continue;    //agar diff negative hogya to ans aage ma- mi krne pe value bdh hii jaygii
             ans = min( ans , ma - mi);
         }
         return ans;
