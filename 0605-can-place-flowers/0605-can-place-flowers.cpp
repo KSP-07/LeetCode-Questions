@@ -8,8 +8,6 @@ public:
             }
             if(n==0) return true;
         }
-        if (n > 0)
-            return false;
-        return true;
+        return !(n>0);
     }
 };
