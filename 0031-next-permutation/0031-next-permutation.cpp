@@ -24,6 +24,6 @@ public:
             }
         }
         //now after the breakpoint reversing the array to make all thing in smallest order after breakpoint
-        reverse(nums.begin() + ind+1 , nums.end() );
+        reverse(nums.begin() + ind+1 , nums.end());
     }
 };
