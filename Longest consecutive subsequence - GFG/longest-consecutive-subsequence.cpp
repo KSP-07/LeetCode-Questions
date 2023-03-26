@@ -18,7 +18,7 @@ class Solution{
       
       //hashing all the array elements
       for(int i=0;i<n;i++){
-          s.insert(arr[i]);
+          s.insert(arr[i]) ;
       }
       //check each possible sequence from the start and update length
       for(int i=0;i<n;i++){
@@ -31,6 +31,7 @@ class Solution{
               ans=max(ans , j-arr[i]);// update  optimal length if length is more
           }
       }
+      
       return ans;
       
     }
