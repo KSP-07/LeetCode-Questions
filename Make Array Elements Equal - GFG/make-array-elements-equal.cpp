@@ -11,13 +11,16 @@ class Solution {
   public:
     long long int minOperations(int N) {
         // Code here
-        long long int ans , x ;
-        x = N/2 ;
-        if(N%2!=0)
-        ans = (x*(x+1)) ;
-        else
-        ans = x*x ;
-        return ans ;
+        // long long int ans , x ;
+        // x = N/2 ;
+        // if(N%2!=0)
+        // ans = (x*(x+1)) ;
+        // else
+        // ans = x*x ;
+        // return ans ;
+        long long int ans = N / 2;
+        ans *= (N + 1) / 2;
+        return ans;
     }
 };
 
