@@ -16,7 +16,7 @@ class Solution{
         // Your code goes here
          if(array2.size() < array1.size()) return MedianOfArrays(array2,array1);
         int n1 = array1.size() , n2 = array2.size();
-        
+        int temp;
         int low = 0, high  = n1 ;   // maximum n1 elements choose kr skte
         
         while(low <= high){
@@ -47,7 +47,9 @@ class Solution{
             else{
                 low = cut1+1;
             }
+            
         }
+        
         return 0.0;
     }
 };
