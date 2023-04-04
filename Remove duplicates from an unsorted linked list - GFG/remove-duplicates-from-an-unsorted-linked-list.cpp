@@ -44,6 +44,10 @@ class Solution
     Node * removeDuplicates( Node *head) 
     {
      // your code goes here
+     
+     //map mai element store kr rhee agr duplicate nhi hai aur prev ko curr pointer pe rkh ke curr ko next pe bhej rhee
+     //agr duplicate hue toh fir ek temp node banake prev = next ke next pe rkh denge aur temp node del
+     
      unordered_map<int , int> mp;
      Node *prev = NULL  , *next = head;
      
