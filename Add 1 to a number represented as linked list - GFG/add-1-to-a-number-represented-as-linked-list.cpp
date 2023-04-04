@@ -68,10 +68,9 @@ class Solution
             curr = curr->next;
         }
         if(!flag) return head;
-        
         else{
             if(prev==NULL){  //means all numbers are 9's
-                Node *temp = new Node(0);
+                Node *temp = new Node(0);  //ek head bana lerhe hai 0 se , kuki normal case mai prev ko ek bdha rhe thee toh 0 se wo 1 kr hii degaa
                 temp->next =head;
                 head = temp;
                 prev = head;
