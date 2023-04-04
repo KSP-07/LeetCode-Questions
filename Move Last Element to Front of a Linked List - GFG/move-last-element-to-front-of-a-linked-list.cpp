@@ -26,6 +26,8 @@ public:
             prev = curr;
             curr= curr->next;
         }
+        
+        //agar sirf ek element hue toh segment fault aajaygi kuki prev humara null hoga aur hum uss se value read krne ka try krenge
         if(prev!=NULL && prev->next){
             curr->next = head;
             head = curr;
