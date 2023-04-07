@@ -41,10 +41,11 @@ public:
             last = last->next;
         }
         vector<pair<int,int>> ans;
+        
         Node *start = head;
         
         //start prev isliye lia kuki do element check krega , to fir cross krega ek sath agr , to prev hojayga start ka
-        while( start->next && last->prev && start->prev != last && start != last){
+        while( start->data < last->data){
             if(start->data + last->data == target){
                 ans.push_back({start->data , last->data });
                 
