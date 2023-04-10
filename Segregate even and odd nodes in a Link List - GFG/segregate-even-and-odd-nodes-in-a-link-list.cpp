@@ -50,22 +50,26 @@ public:
         Node *temp = head;
         
         while(temp){
-            if(temp->data %2 == 0){
-                Node *newNode = new Node(temp->data);
-                q->next = newNode;
+            if(temp->data%2 == 0){
+                // Node *newNode = new Node(temp->data);
+                // q->next = newNode;
+                q->next = temp;
                 q = q->next;
             }
             else{
-                Node *newNode = new Node(temp->data);
-                p->next = newNode;
+                // Node *newNode = new Node(temp->data);
+                // p->next = newNode;
+                // cout<<404<<" ";
+                p->next = temp;
                 p = p->next;
             }
             temp = temp->next;
         }
+        p->next = NULL;   //since odd ko last mai hona hai aur null nhi kr rhee toh fir phle odd ka aarha fir even ke bhi
         if(!odd->next || !even->next) return head;
-        if(q && odd->next){
+        // if(q && odd->next){
             q->next = odd->next;   
-        }
+        // }
         return even->next;
     }
 };
