@@ -57,6 +57,8 @@ class Solution
         }
         return r;
     }
+    
+    //reverese krke nikal lenge kaun chota hai and then dels krne ke baaad waps reverse
     Node *compute(Node *head)
     {
         // your code goes here
@@ -75,6 +77,7 @@ class Solution
             }
             curr_max = max(curr_max , temp->data);
             prev = temp;
+            
             temp = temp->next;
         }
         return reverse(rev);
