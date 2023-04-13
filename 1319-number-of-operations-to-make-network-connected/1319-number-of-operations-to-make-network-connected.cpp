@@ -82,6 +82,7 @@ public:
         
         int cntC=0;
         for(int i=0;i<n;i++){
+//agar i apna khud ka parent hua iska mtlb wo kisi ka sub ni hai , to suru mai sbb khudke parent thee , fir union hua agr uske baad bhi hai to wo alag hue na
             if(ds.parent[i]==i) cntC++;
         }
         
