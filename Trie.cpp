@@ -90,6 +90,29 @@ class trie{
         return searchUtil(root , word);
     }
 
+    //del word util
+    void delUtil(TrieNode *root , string word){
+        
+        //base case 
+        if(word.length() == 0 ){
+            if( root ->isTerminal ){
+                root->isTerminal = false;
+                delete root;
+            }
+            return;
+        }
+        TrieNode *child;
+        int index = word[0] - 'a';
+
+        if(root->children[index] != NULL) child = root->children[index] ; 
+        else return;
+
+        delUtil( child , word.substr(1));
+    }
+    void delWord(string word){
+        delUtil ( root , word) ;
+    }
+
 };
 
 int main(){
@@ -97,6 +120,9 @@ int main(){
 
     t->insertWord("abcd");
 
+    cout<< t->search("abcd")<<endl<< t->search("ab")<<endl << t->search("ke")<<endl;
+
+    t->delWord("abcd");
     cout<< t->search("abcd")<<endl<< t->search("ab")<<endl << t->search("ke")<<endl;
 
     return 0; 
