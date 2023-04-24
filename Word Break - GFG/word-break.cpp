@@ -73,7 +73,7 @@ public:
         if(t->search(word)) return 1;
         for(int i = 1 ; i <= word.size() ; i++){
             string s1 = word.substr(0 , i);
-            string s2 = word.substr(i , word.size() - i);
+            string s2 = word.substr(i);
             // if(t->search(s1) && t->search(s2)) cout<<s1 <<" "<<s2<<endl;
             if(t->search(s1) && solve( s2, t)) return true;
             // else if(t->search(s1)) return solve( s2, t);
