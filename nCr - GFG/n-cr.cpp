@@ -18,7 +18,7 @@ int mod = 1000000007;
         
         for(int i = 2; i<=n ; i++){
             // for(int k = 0 ; k<=)
-            for(int j = min(i , r) ; j>0 ;j--){
+            for(int j = r ; j>0 ;j--){
                 C[j] = (C[j] + C[j-1]) % mod;
             }
         }
