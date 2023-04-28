@@ -11,7 +11,7 @@ public:
         return (different == 0 || different == 2);
     }
     
-    
+   /* 
     void dfs ( vector<vector<int>> &adj , vector<int> &vis , int node){
         vis[node] = 1 ;
         
@@ -21,10 +21,26 @@ public:
             }
         }
     }
+   */ 
     
+    int findParent( vector<int> &parent , int node ){
+        if( parent[node] == node ) return node;
+        
+        return parent[node] = findParent( parent , parent[node] );
+    }
+    
+    bool merge( vector<int> &parent , int i , int j ){
+        int parent1 = findParent( parent , i);
+        int parent2 = findParent( parent , j);
+        
+        if( parent1 == parent2 ) return false;
+        
+        parent[ parent1] = parent2;
+        return true;
+    }
     int numSimilarGroups(vector<string>& strs) {
         int n = strs.size() ;
-        
+       /* 
         vector<vector<int>> adj(n);
         
         for (int i = 0; i < n; i++)
@@ -48,5 +64,25 @@ public:
             }
         }
         return cnt;
+        */
+        
+        
+        vector<int> parent(n);
+        int conn_comp = n;
+        
+        for(int i = 0 ; i < n ; i++ ) parent[i] = i;
+        
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (similar(strs[i], strs[j]))
+                {
+                    bool hasMerged = merge(parent , i , j );
+                    if( hasMerged ) conn_comp--;
+                }
+            }
+        }
+        return conn_comp;
     }
 };
