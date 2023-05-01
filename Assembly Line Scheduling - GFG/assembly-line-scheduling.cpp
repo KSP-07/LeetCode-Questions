@@ -19,16 +19,25 @@ class Solution{
       vector<vector<int>> dp( 2 , vector<int> (n +1, INT_MAX));
       
       //adding intial cost
+      /*
+      with space
+      
       dp[0][0] = a[0][0] + e[0];   
       dp[1][0] = a[1][0] + e[1];
+      */
+      int first = a[0][0] + e[0];
+      int second = a[1][0] + e[1];
       
       //adding ending cost directly into the input array
       a[0][n-1] += x[0];
       a[1][n-1] += x[1];
       
-      for(int i = 1 ; i <= n ; i ++ ){
-          dp[0][i] = min ( dp[0][i-1] + a[0][i]  ,  dp[1][i-1] + a[0][i] + T[1][i]);
-          dp[1][i] = min ( dp[1][i-1] + a[1][i]  ,  dp[0][i-1] + a[1][i] + T[0][i]);
+      for(int i = 1 ; i < n ; i ++ ){
+          int up = min ( first + a[0][i]  ,  second + a[0][i] + T[1][i]);
+          int down = min (second + a[1][i]  ,  first + a[1][i] + T[0][i]);
+          
+          first = up ;
+          second = down;
       }
     //   for(auto i: dp){
     //       for(auto j : i){
@@ -37,7 +46,8 @@ class Solution{
     //       cout<<endl;
     //   }
       
-      return min ( dp[0][n-1] , dp[1][n-1]);
+    //   return min ( dp[0][n-1] , dp[1][n-1]);
+    return min(first , second);
   }
 };
 
