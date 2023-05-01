@@ -11,6 +11,12 @@ class Solution{
 public:
 
     bool safe(int row , int col , vector<vector<int>> board , int n){
+        
+        /*
+        \  |  /
+         \ | /
+          \|/
+          */
         int drow = row;
         int dcol = col;
         
@@ -43,10 +49,10 @@ public:
     }
     
     void solve(int col , int n , vector<vector<int>> board ,vector<vector<int>> &ans){
-        //base case
+        //base case, hum col mai aage hii tab bdte hai jab ek queen place hojay
         if(col==n){
             vector<int>temp;
-            
+            //colum wise traverse krke ek 2d matrix mai, to jaha pe bhi queen rkhi hogi wo le lenge colum wise
             for(int col=0; col<n; col++){
                 for(int row = 0 ; row<n; row++){
                     if(board[row][col]==1){
