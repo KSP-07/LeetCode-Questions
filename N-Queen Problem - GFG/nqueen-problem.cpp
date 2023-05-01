@@ -23,7 +23,7 @@ public:
         //for ex , ab 2nd col mai queen place krne aay , toh fir second col mai...uske aage ke row mai , uske aage ke diagnol
         // pe check krne ki jrurat nhi kuki abii to waha kuchh place hii nhi kiaa
         
-        //row mai check
+        //uoar ki col mai minus krke check krr rheee
         while(dcol>=0){
             if(board[drow][dcol]==1) return false;
             dcol--;
