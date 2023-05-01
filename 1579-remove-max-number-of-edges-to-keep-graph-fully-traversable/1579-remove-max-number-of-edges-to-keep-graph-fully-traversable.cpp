@@ -1,84 +1,89 @@
-class UnionFind {
-    vector<int> representative;
-    vector<int> componentSize;
-    // Number of distinct components in the graph.
-    int components;
+class DisjoinSet{
+    public:
+    vector<int> parent , size;
     
-public:
-    // Initialize the list representative and componentSize
-    // Each node is representative of itself with size 1.
-    UnionFind(int n) {
-        components = n;
-        for (int i = 0; i <= n; i++) {
-            representative.push_back(i);
-            componentSize.push_back(1);
+    DisjoinSet(int n ){
+        size.resize(n , 1);
+        parent.resize(n);
+        for(int i = 0 ; i < n ; i++ ){
+            parent[i] = i ;
         }
     }
     
-    // Get the root of a node.
-    int findRepresentative(int x) {
-        if (representative[x] == x) {
-            return x;
-        }
+    int findPar(int node ){
+        if(node == parent[node]) return node;
         
-        // Path compression.
-        return representative[x] = findRepresentative(representative[x]);
+        return parent[node] = findPar(parent[node]) ;
     }
     
-    // Perform the union of two components that belongs to node x and node y.
-    int performUnion(int x, int y) {       
-        x = findRepresentative(x); y = findRepresentative(y);
+    void UnionBySize(int u , int v){
+        int ult_u = findPar(u) ;
+        int ult_v = findPar(v) ;
         
-        if (x == y) {
-            return 0;
+        if(ult_u == ult_v) return;
+        
+        if(size[ult_u] < size[ult_v]){
+            parent[ult_u] = ult_v;
+            size[ult_v] += size[ult_u] ;
         }
-        
-        if (componentSize[x] > componentSize[y]) {
-            componentSize[x] += componentSize[y];
-            representative[y] = x;
-        } else {
-            componentSize[y] += componentSize[x];
-            representative[x] = y;
+        else{
+            parent[ult_v] = ult_u ;
+            size[ult_v] += size[ult_u];
         }
-        
-        components--;
-        return 1;
     }
     
-    // Returns true if all nodes get merged to one.
-    bool isConnected() {
-        return components == 1;
-    }
 };
 
 class Solution {
 public:
     int maxNumEdgesToRemove(int n, vector<vector<int>>& edges) {
-        // Different objects for Alice and Bob.
-        UnionFind Alice(n), Bob(n);
-
-        int edgesRequired = 0;
-        // Perform union for edges of type = 3, for both Alice and Bob.
-        for (vector<int>& edge : edges) {
-            if (edge[0] == 3) {
-                edgesRequired += (Alice.performUnion(edge[1], edge[2]) | Bob.performUnion(edge[1], edge[2]));
+        DisjoinSet Alice(n+1) , Bob(n+1);
+        int ExtraCnt = 0 , Aedges = 0 , Bedges = 0;
+        for(auto i : edges){
+            // cout<<i[2]<<"here\n";
+            if( i[0] == 3 ){
+                
+                Aedges++;
+                Bedges++;
+                // cout<<Aedges<<" "<<Bedges<<endl;
+                if(Alice.findPar(i[1]) == Alice.findPar(i[2]) || Bob.findPar(i[1]) == Bob.findPar(i[2]) ){
+                    ExtraCnt++;
+                }
+                else{
+                    Alice.UnionBySize(i[1] , i[2]) ;
+                    Bob.UnionBySize(i[1] , i[2]) ;
+                }
+                
             }
         }
+        for(auto i : edges){
+            int type = i[0];
+            int u = i[1] ;
+            int v = i[2] ;
 
-        // Perform union for Alice if type = 1 and for Bob if type = 2.
-        for (vector<int>& edge : edges) {
-            if (edge[0] == 1) {
-                edgesRequired += Alice.performUnion(edge[1], edge[2]);
-            } else if (edge[0] == 2) {
-                edgesRequired += Bob.performUnion(edge[1], edge[2]);
+            if(type == 1){
+                Aedges++;
+                if(Bob.findPar(u) == Bob.findPar(v)) ExtraCnt++;
+                else Bob.UnionBySize(u , v) ;
             }
+            if(type == 2){
+                Bedges++;
+                if(Alice.findPar(u) == Alice.findPar(v)) ExtraCnt++;
+                else Alice.UnionBySize(u,v);
+            }
+            // Tedges++;
         }
-
-        // Check if the Graphs for Alice and Bob have n - 1 edges or is a single component.
-        if (Alice.isConnected() && Bob.isConnected()) {
-            return edges.size() - edgesRequired;
+        // cout<<ExtraCnt<<endl;
+        int comp=0 , comp2=0;
+        for(int i = 1 ;i<=n ; i++){
+            if(Alice.findPar(i) == i ) comp++;
+            if(Bob.findPar(i) == i ) comp2++;
         }
+        if(comp > 1 || comp2>1) return -1;
         
-        return -1;
+        return  ExtraCnt;
     }
 };
+
+
+
