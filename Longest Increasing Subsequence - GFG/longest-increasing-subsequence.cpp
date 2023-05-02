@@ -4,7 +4,34 @@ using namespace std;
 
 // } Driver Code Ends
 
+//now will use dp with binary search
+class Solution
+{
+    public:
+    int longestSubsequence(int n, int a[]){
+        if(n==0) return 0;
+        
+        vector<int> ans;
+        ans.push_back(a[0]);
+        for(int i = 1 ; i< n; i++){
+            if( a[i] > ans.back()) ans.push_back(a[i]);
+            else{
+                //find index of just bada element 
+                int indx = lower_bound(ans.begin() , ans.end() , a[i]) - ans.begin();
+                ans[indx] = a[i];
+            }
+        }
+        return ans.size();
+    }
+};
 
+
+
+
+
+
+//dp with n^2 tc and sc and with n^2 tc and n sc;
+/*
 class Solution
 {
     public:
@@ -64,6 +91,8 @@ class Solution
     return nextRow[0];
     }
 };
+
+*/
 
 //{ Driver Code Starts.
 int main()
