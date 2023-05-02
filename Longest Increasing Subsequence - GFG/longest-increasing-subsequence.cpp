@@ -28,22 +28,40 @@ class Solution
     {
        // your code here
     //   vector<vector<int>> dp(n , vector<int>(n+1 , -1));
-        vector<vector<int>> dp(n+1 , vector<int>(n+1 , 0));
+        // vector<vector<int>> dp(n+1 , vector<int>(n+1 , 0));   //will use only 1 d array now
     //   return solve( 0 , n , a , -1 , dp);
+    
+    vector<int> currRow(n+1 , 0);
+    vector<int> nextRow(n+1 , 0) ;
+    // for(int i = n-1 ; i >=0; i--){
+    //     for(int j = i-1 ; j>=-1 ; j--){
+    //         int take = 0 ;
+    //         if(j==-1 || a[i] > a[j]){
+    //             take = 1 + dp[i+1][i+1]; 
+    //         }
+            
+    //         int notake = 0 + dp[i+1][j+1];
+            
+    //         dp[i][j+1] = max(take ,notake);
+    //     }
+    // }
+    
     
     for(int i = n-1 ; i >=0; i--){
         for(int j = i-1 ; j>=-1 ; j--){
             int take = 0 ;
             if(j==-1 || a[i] > a[j]){
-                take = 1 + dp[i+1][i+1]; 
+                take = 1 + nextRow[i+1]; 
             }
             
-            int notake = 0 + dp[i+1][j+1];
+            int notake = 0 + nextRow[j+1];
             
-            dp[i][j+1] = max(take ,notake);
+            currRow[j+1] = max(take ,notake);
+            
+            nextRow = currRow;
         }
     }
-    return dp[0][0];
+    return nextRow[0];
     }
 };
 
