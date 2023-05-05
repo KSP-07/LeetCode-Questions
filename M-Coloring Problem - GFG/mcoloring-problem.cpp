@@ -12,6 +12,9 @@ public:
             //k is checking that it's not equal to the node we colored and k is traversing for adjacent nodes
             //is any other node than the parent has same color val , it means the prev color is used and since
             // these node are adjacent, they can not have the same color, so false
+            
+            //basically, 2nd condition checks that if there is edge in adj matrix
+            //if 2nd is true then third checks that the other node has same colour
             if(k!= node && graph[k][node]==1 && color[k]==color_val ) return false;  // [k][node] is like if node is 0 , then 1 0 , 2 0 ,3 0...adjacent
         }
         return true;
@@ -24,6 +27,7 @@ public:
         }
         
         //traversing for checking that we can put each color or not , 'recursion'
+        //basically, hrr vertex pe suruvat se colour daalne ka try krenge
         for(int i=1;i<=m;i++){
             //checking if we can use the current color or not
             if(isSafe(node , graph , color , n , i)){
@@ -33,16 +37,17 @@ public:
                 if(solve( graph , color , node + 1 , n , m)) return true;
                 
                 //if our ans on prev recursion was false , to try others , we make the color as same before('backtracking')
-                color[node]=0;
+                color[node]=0 ;
             }
         }
+        
         return false;
     }
     // Function to determine if graph can be coloured with at most M colours such
     // that no two adjacent vertices of graph are coloured with same colour.
     bool graphColoring(bool graph[101][101], int m, int n) {
         // your code here
-        vector<int> col(n , 0);   //using N size coz we will use to acces node's color
+        vector<int> col(n , 0);   //using N size coz we will use to access node's color
         // for(int i=1;i<=m;i++) col[i-1]=i;
         return solve(graph , col ,0, n,m);
     }
