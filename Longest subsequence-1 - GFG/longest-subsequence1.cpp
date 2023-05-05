@@ -21,12 +21,35 @@ public:
         return max(pick , nopick);
     }
 
+void printdp(vector<int> &arr){
+    for(auto i:arr) cout<<i<<" ";
+    cout<<endl;
+}
 //why sorting would not work> -> take this test case for example...[4 , 5 , 4 , 5 , 4, 5 , 4 , 5] + sorting -> 44445555
-    int longestSubsequence(int N, int A[])
+    int longestSubsequence(int n, int arr[])
     {
         // code here
         // int cnt = 1;
-        return solve( 0 , -1, N , A);
+        // return solve( 0 , -1, N , A);
+        
+        vector<int>dp(n+1,1);
+        int maxans=1;
+        for(int i=0;i<n;i++){
+            int temp=1;
+            for(int j=0;j<i;j++){
+                if(abs(arr[i]-arr[j])==1){
+                    // cout<<arr[j]<<" "<<j<<" "<<arr[i]<<endl;
+                    // cout<<dp
+                        temp=max(dp[j+1]+1,temp);
+                }
+            }
+            // printdp(dp);
+            dp[i+1]=temp;
+            // printdp(dp);
+            maxans=max(maxans,dp[i+1]);
+        }
+        
+        return maxans;
     }
 };
 
