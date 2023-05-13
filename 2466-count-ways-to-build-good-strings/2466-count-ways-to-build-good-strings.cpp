@@ -10,9 +10,23 @@ public:
     }
     int countGoodStrings(int low, int high, int zero, int one) {
         int ans = 0;
-        vector<long long> dp(high+1 , -1);
-        for(int i = low ; i<=high ; i++){
-            ans = ((ans)%mod+ solve(i , zero , one, dp))%mod;
+        // vector<long long> dp(high+1 , -1);
+        // for(int i = low ; i<=high ; i++){
+        //     ans = ((ans)%mod+ solve(i , zero , one, dp))%mod;
+        // }
+        
+        vector<long> dp(high+1 , 0);
+        dp[0] =1;
+        for(int i = 1 ; i<=high ; i++){
+            int prevZeroLen = i - zero;
+            long long zeroWays = (prevZeroLen < 0)? 0 : dp[prevZeroLen];
+            
+            int prevOneLen = i - one;
+            long long oneWays = (prevOneLen < 0) ? 0 : dp[prevOneLen];
+            
+            dp[i] = (zeroWays + oneWays)%mod;
+            
+            if(i >=low) ans = ((ans)%mod + dp[i])%mod;
         }
         return ans;
     }
