@@ -3,27 +3,37 @@
 class Solution {
 public:
     
-    int solve(vector<int>&nums,  unordered_map<vector<bool>, int>&mp, vector<bool>&visited, int operation)
+    bool isSet(int &num , int indx ){
+        if(num & (1<<indx)) return true;
+        return false;
+    }
+    void setBit(int &num ,int indx){
+        num = num | (1<<indx);
+    }
+    int solve(vector<int>&nums,  unordered_map< int, int> &mp, int visited, int operation)
     {
         if (mp.count(visited)) return mp[visited]; //use stored result
             
         int maxScore = 0;
         for (int i = 0; i < nums.size() - 1; i++)
         {
-            if (visited[i]) continue;
+            if (isSet(visited , i)) continue;
             for (int j = i + 1; j < nums.size(); j++)
             {
-                if (visited[j]) continue;
-                visited[i] = true;
-                visited[j] = true;
+                if (isSet(visited , j)) continue;
+                int newVisited = visited;
+                setBit(newVisited , i);
+                setBit(newVisited , j);
                 //=====================================================================
                 int currScore = operation * __gcd(nums[i], nums[j]);
-                int nextMaxScore = solve(nums, mp, visited, operation + 1);
+                int nextMaxScore = solve(nums, mp, newVisited, operation + 1);
                 int totalScore = currScore + nextMaxScore;
                 maxScore = max(maxScore, totalScore);
                 //======================================================================
-                visited[i] = false;
-                visited[j] = false;
+                // visited[i] = false;
+                // visited[j] = false;
+                
+                //unSet nhi kr rhee bits kuki newVisited bana ke usme store kraya thaa
             }
         }
         return mp[visited] = maxScore; //store the result
@@ -31,17 +41,11 @@ public:
     int maxScore(vector<int>& nums) 
     {
         int n = nums.size();
-        vector<bool>visited(n, false);
-        unordered_map<vector<bool>, int>mp;
+        // vector<bool>visited(n, false);
+        int visited = 0;
+        
+        unordered_map<int, int> mp;        
         int ans = solve(nums, mp, visited, 1);
-        
-        
-//         for(auto i: mp){
-//             for(auto j : i.first){
-//                 cout<<j<<" ";
-//             }
-//             cout<<"   "<<i.second<<endl;
-//         }
         return ans;
         
     }
