@@ -103,24 +103,28 @@ struct Node
 };
 */
 
-
-int LISS(Node *root)
-{
-    //Code here
+int solve(Node *root , unordered_map<Node * , int> &dp){
     if(!root) return 0;
-    
+    if(dp[root]) return dp[root];
     int include =1 , exclude =0;
     
     if(root->left){
-        include += LISS(root->left->left) + LISS(root->left->right);
+        include += solve(root->left->left , dp) + solve(root->left->right , dp);
     }
     if(root->right){
-        include += LISS(root->right->left) + LISS(root->right->right);
+        include += solve(root->right->left , dp) + solve(root->right->right , dp);
     }
     
-    exclude = LISS(root->left) + LISS(root->right);
+    exclude = solve(root->left , dp) + solve(root->right , dp) ;
     
-    return max(include , exclude );
+    return dp[root] = max(include , exclude );
+}
+int LISS(Node *root)
+{
+    //Code here
+    unordered_map<Node * , int> dp;
+    return solve(root , dp);
+    
     
 }
 
