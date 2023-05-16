@@ -11,7 +11,8 @@ using namespace std;
 class Solution{
   public:
   int smallestSumSubarray(vector<int>& a){
-      //Code here
+      //Code here 
+      /*
       int n = a.size();
       int ans = INT_MAX;
       int t_ans = 0;
@@ -34,6 +35,22 @@ class Solution{
           return *min_element(a.begin() , a.end());
       }
       return ans;
+      */
+      
+      int n = a.size();
+        int small_sum = a[0];
+        int curr_sum = a[0];
+        for(int i=1;i<n;i++)
+        {
+            if(curr_sum >= 0)
+            {
+                curr_sum = a[i];
+            }
+            else curr_sum += a[i];
+            small_sum = min(small_sum, curr_sum);
+        }
+        // small_sum = min(small_sum, curr_sum);
+        return small_sum;
   }
 };
 
