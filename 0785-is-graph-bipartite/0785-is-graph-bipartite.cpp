@@ -1,23 +1,29 @@
 class Solution {
 public:
     
-    bool check(int start , vector<vector<int>> &graph , vector<int> color){
-        color[start] =1;
-        queue<int> q;
-        q.push(start);
-        
-        while(!q.empty()){
-            int node = q.front(); q.pop();
-            
-            for(auto i : graph[node]){
-                if(color[i] == -1 ){
-                    color[i] = !color[node];
-                    q.push(i);
-                }
-                else if(color[i] == color[node]) return false;
-            }
-        }
-        return true;
+    bool check(int start , vector<vector<int>> &adj , vector<int> color){
+         queue<int> q;
+	    //pushing the starting vertex in queue alongwith marking color in color array
+	    q.push(start);
+	    color[start]=0;
+	    while(!q.empty()){
+	        int size = q.size();
+	        while(size--){
+	            int node = q.front();
+	            q.pop();
+	            
+	            for(auto it : adj[node]){
+	                if(color[it]==-1){   //if the adjacent node is not yet colored      
+        	            color[it] = !color[node];   //storing opposite color of parent
+	                    q.push(it);
+	                }
+	                //if the adjacent guy having the same color
+	                //someone did color it on some other path
+	                else if(color[it] == color[node]) return 0;
+	            }
+	        }
+	    }
+	    return true;
     }
     
     bool isBipartite(vector<vector<int>>& graph) {
