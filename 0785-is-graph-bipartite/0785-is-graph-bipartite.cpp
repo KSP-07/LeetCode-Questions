@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    bool check(int start , vector<vector<int>> &adj , vector<int> color){
+    bool check(int start , vector<vector<int>> &adj , vector<int> &color){
          queue<int> q;
 	    //pushing the starting vertex in queue alongwith marking color in color array
 	    q.push(start);
