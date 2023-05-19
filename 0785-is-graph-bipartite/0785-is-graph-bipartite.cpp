@@ -1,31 +1,34 @@
-class Solution { public:
-bool bipartiteBfs(int src, vector<vector<int>>& graph, int color[]) { queue<int>q;
-q.push(src); color[src] = 1; while(!q.empty()) {
-int node = q.front(); q.pop();
-
-for(auto it : graph[node]) { if(color[it] == -1) {
-color[it] = 1 - color[node]; q.push(it);
-} else if(color[it] == color[node]) { return false;
-}
-}
-}
-return true;
-}
-bool checkBipartite(vector<vector<int>>& graph, int n) { int color[n];
-memset(color, -1, sizeof color); for(int i = 0;i<n;i++) {
-if(color[i] == -1) { if(!bipartiteBfs(i, graph, color)) {
- 
-return false;
-}
-}
-}
-return true;
-}
-bool isBipartite(vector<vector<int>>& graph) { int n = graph.size(); if(checkBipartite(graph, n)) {
-return true;
-} else {
-return false;
-}
-return 0;
-}
+class Solution {
+public:
+    
+    bool check(int start , vector<vector<int>> &graph , vector<int> color){
+        color[start] =1;
+        queue<int> q;
+        q.push(start);
+        
+        while(!q.empty()){
+            int node = q.front(); q.pop();
+            
+            for(auto i : graph[node]){
+                if(color[i] == -1 ){
+                    color[i] = !color[node];
+                    q.push(i);
+                }
+                else if(color[i] == color[node]) return false;
+            }
+        }
+        return true;
+    }
+    
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> color(n,-1);
+        
+        for(int i = 0 ; i< n; i++){
+            if(color[i] == -1 && !check(i , graph , color)){
+                return false;
+            }
+        }
+        return true;
+    }
 };
