@@ -14,7 +14,7 @@ class Solution{
         if(dp[i][j] !=-1) return dp[i][j];
         
         if(str[i] == str[j]){
-            return dp[i][j] = ((solve(str , i , j-1,dp)%mod + solve(str , i+1,j , dp)%mod + 1 ) %mod)%mod;
+            return dp[i][j] = (1+ (solve(str , i , j-1,dp)%mod + solve(str , i+1,j , dp)%mod ) %mod)%mod;
         }
         else{
             return dp[i][j] =(( solve(str , i , j-1 , dp)%mod + solve(str , i+1 , j , dp)%mod - solve(str, i+1 , j-1 , dp)%mod +mod) %mod)%mod;
