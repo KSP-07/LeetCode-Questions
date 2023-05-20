@@ -20,9 +20,16 @@ int mod = 1e9+7;
     long int disarrange(int N){
         // code here
         
-        vector<long int> dp(N +1, -1);    //N+1 isliye lia kuki N tkk ki index pe store kr rhaa ans
-        return solve(N , dp)%mod;
+        // vector<long int> dp(N +1, -1);    //N+1 isliye lia kuki N tkk ki index pe store kr rhaa ans
+        vector<long int> dp(N+1 , 0);
+        // return solve(N , dp)%mod;
         
+        dp[2] = 1;
+        for(int i = 3 ; i<=N ; i++){
+            dp[i] = (i-1)%mod *(dp[i-1]%mod + dp[i-2]%mod)%mod;
+        }
+        
+        return dp[N];
     }
 };
 
