@@ -1,26 +1,23 @@
 class Solution {
 public:
     vector<string> summaryRanges(vector<int>& nums) {
-        nums.push_back(-INT_MAX);
+        // nums.push_back(INT_MAX);
         
         int n = nums.size();
         
         vector<string> ans;
-        for(int i = 0 , j = 1; j<n ; j++){
-            if(nums[j]-1 != nums[j-1]  ){
-                string a = to_string(nums[i]);
-                string b = to_string(nums[j-1] );
-                string temp = a + "->" + b;
-                if((j-1) == i){
-                    ans.push_back(a);                    
-                }
-                else{
-                    // cout<<"test\n";
-                    ans.push_back(temp);
-                }
-                i=j;
-            }
+        for (int i = 0; i < n; i++){
+            int start = nums[i];
             
+            while(i+1 < n && nums[i]+1 == nums[i+1]) i++;
+            
+            if(start != nums[i]){
+                ans.push_back(to_string(start) + "->" + to_string(nums[i]));
+            }
+            else{
+                ans.push_back(to_string(start));
+            }
+           
         }
         return ans;
     }
