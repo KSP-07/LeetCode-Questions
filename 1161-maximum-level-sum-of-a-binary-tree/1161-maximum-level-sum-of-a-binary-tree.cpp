@@ -11,7 +11,8 @@ public:
             level++;
             int sumAtCurrentLevel = 0;
             // Iterate over all the nodes in the current level.
-            for (int sz = q.size(); sz > 0; --sz) {
+            int size = q.size();
+            while(size--) {
                 TreeNode* node = q.front();
                 q.pop();
                 sumAtCurrentLevel += node->val;
