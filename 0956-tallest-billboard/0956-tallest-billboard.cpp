@@ -1,6 +1,6 @@
 class Solution {
 public:
-    
+    //https://www.youtube.com/watch?v=805umyRq7cE
     int helper(vector<int> &rods , vector<vector<int>> &dp , int i ,int diff){
         if(i==rods.size()){
             if(diff==0) return 0;
