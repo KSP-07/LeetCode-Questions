@@ -8,7 +8,7 @@ public:
         if( n != m ) return false ;
         
         if( s == goal){
-            set<char> st(s.begin() , s.end());
+            unordered_set<char> st(s.begin() , s.end());
             
             return st.size() < m ;
         }
