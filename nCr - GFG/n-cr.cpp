@@ -9,20 +9,30 @@ using namespace std;
 
 class Solution{
 public:
-int mod = 1000000007;
+int mod = 1e9+7;
     int nCr(int n, int r){
         // code here
-        long long C[r+1] = {0};
-        C[0] =1;
-        C[1] =1;
+        /*
+        int res = 1 ;
+        for( int i = 0 ; i < r ; i++ ){
+            res = res * (n-i);
+            res /= (i+1);
+            res = res %mod;
+        }
+        return res%mod;
+        */
         
-        for(int i = 2; i<=n ; i++){
-            // for(int k = 0 ; k<=)
-            for(int j = r ; j>0 ;j--){
-                C[j] = (C[j] + C[j-1]) % mod;
+        int C[r+1] = {0};
+        C[0] = 1 ;
+        C[1] = 1 ;
+        
+        for( int i = 2 ; i <= n ; i++ ){
+            for( int j = r ; j > 0 ; j-- ){
+                C[j] = ( C[j] + C[j-1] ) % mod ;
             }
         }
-        return C[r];
+        return C[r] ;
+        
     }
 };
 
