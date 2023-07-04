@@ -11,27 +11,15 @@ using namespace std;
 
 class Solution{
     public:
-    int mod =1000000007;
+    int mod = 1e9+7;
     int permutationCoeff(int n, int k){
         //Code here
+        long long p = 1;
+        for( int i = n ; i > (n - k) ; i-- ) {
+            p = ( p * i ) % mod;
+        }
         
-        // long long dp[n+1]={0};
-        // dp[0]=1;
-        // // dp[1] =1;
-        
-        // for(int i = 1 ; i<=n;i++){
-        //     dp[i] = i * dp[i-1];
-        // } 
-        // // cout<<i<<dp[k];
-        // return (dp[n] / dp[n-k])%mod;
-        
-        long long P = 1;
-     
-        // Compute n*(n-1)*(n-2)....(n-k+1)
-        for (int i = n; i > (n-k); i--)
-            P =  (P * i)%mod ;
-     
-        return P;
+        return p;
     }
 };
 
