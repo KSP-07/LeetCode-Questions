@@ -12,6 +12,7 @@ public:
         
         // return solve ( n ) ;
         
+        /*
         vector<int> dp ( n+1 ) ;
         
         dp[0] = 0 ;
@@ -22,5 +23,17 @@ public:
         }
         
         return dp[n];
+        */
+        
+        int var1 = 0 , var2 = 1 ;
+        int ans = 1 ;
+        
+        for( int i = 2 ; i <= n ; i++ ) {
+            ans = var1 + var2 ;
+            var1 = var2 ;
+            var2 = ans ;            
+        }
+        
+        return ans ;
     }
 };
