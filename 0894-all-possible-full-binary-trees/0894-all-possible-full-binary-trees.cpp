@@ -27,7 +27,7 @@ public:
         for( int i = 1 ; i < n ; i+=2) {
             vector<TreeNode*> left = allPossibleFBT(i) ;
             vector<TreeNode*> right = allPossibleFBT( n - i - 1 ) ;
-            
+            //Iterate over both the lists left and right using two loops. For each element count in left and r in right, we create a new root node and set root.left = l and root.right = r. We add root into our answer variable res.
             for( auto l : left ) {
                 for( auto r : right ) {
                     TreeNode* root = new TreeNode(0 , l , r ) ;
