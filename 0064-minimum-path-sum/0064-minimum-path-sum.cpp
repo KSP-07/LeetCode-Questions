@@ -1,3 +1,25 @@
+
+/*class Solution {
+public:
+    int m, n;
+    int solve(vector<vector<int>>&grid, int currRow, int currCol)
+    {
+        if (currRow >= m || currCol >= n) return INT_MAX; //when cell is out of bounds
+        if (currRow == m - 1 && currCol == n - 1) return grid[m - 1][n - 1]; //reached the target
+        
+        int rightMin = solve(grid, currRow, currCol + 1);
+        int downMin = solve(grid, currRow + 1, currCol);
+        int bestChoice = min(rightMin, downMin);
+        
+        return (grid[currRow][currCol] + bestChoice);
+    }
+    int minPathSum(vector<vector<int>>& grid) 
+    {
+        m = grid.size(); n = grid[0].size();
+        return solve(grid, 0, 0);
+    }
+};
+*/
 class Solution {
 public:
     int m, n;
