@@ -11,16 +11,17 @@ class Solution{
     //Function to find the sum of contiguous subarray with maximum sum.
     long long maxSubarraySum(int arr[], int n){
         
-        long long sum=INT_MIN;
-        long long tsum = 0;
-        for(int i=0; i<n;i++){
-            tsum+=arr[i];
+        // Your code here
+        long long sum = 0 , maxi = -1e9 ;
+        
+        for(int i = 0 ; i< n ; i++){
+            sum += arr[i];
+            maxi = max(maxi , sum ) ;
             
-            if(sum<tsum) sum = tsum;
-            if(tsum<0) tsum =0;
-            
+            if(sum < 0) sum =0;
         }
-        return sum;
+        
+        return maxi;
         
     }
 };
