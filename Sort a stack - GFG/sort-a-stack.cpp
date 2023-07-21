@@ -48,26 +48,28 @@ public:
 };
 */
 
+void insert(stack<int> &s , int x ){
+    if(s.empty() || x > s.top()) {
+        s.push(x);
+        return ;
+    }
+    
+    //since top element was greater, so removing it and inserting in rest of stack, then later will put it on top as it is greaer
+    int top = s.top(); s.pop() ;
+    insert(s , x) ;
+    
+    s.push(top);
+}
+
 /* The below method sorts the stack s 
 you are required to complete the below method */
-
-
 void SortedStack :: sort()
 {
    //Your code here
-   vector<int> t;
-   while(!s.empty()){
-       t.push_back(s.top());
-       s.pop();
-   }
-//   sort(t.begin() ,t.end());
-
-for(int i=0;i<t.size(); i++){
-    for(int j=0 ; j<t.size();j++){
-        if(t[i] < t[j]) swap(t[i] , t[j]);
-    }
-}
-   for(auto i: t){
-       s.push(i);
-   }
+   if(s.empty()) return ;
+   
+   int top = s.top(); s.pop() ;
+   
+   sort();
+   insert(s , top);
 }
