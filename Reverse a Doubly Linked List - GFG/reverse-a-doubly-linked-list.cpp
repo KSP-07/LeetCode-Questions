@@ -98,25 +98,21 @@ struct Node
         
 };
 */
-
-//links ko reverse kr denge bss
 Node* reverseDLL(Node * head)
 {
     //Your code here
-    Node *curr = head  , *temp;
+    Node *p = head , *q = head , *r = NULL;
     
-    while(curr != NULL ){
-        temp = curr->prev;
-        curr->prev = curr->next; 
-        curr->next = temp;
-        curr = curr->prev;    //kuki reverse hogyy links
-        // if(temp) cout<<temp->data<<" ";
+    while(p){
+        p = p->next ;
+        q->next = r;
+        q->prev = p;
+        r = q;
+        q = p ;
+        r->prev = q;
     }
-    //sirf ek element hua toh temp NULL pe reh jaygaa
-    if(temp != NULL){
-        head = temp->prev;   //temp ek element phle hii rukk jayga toh uska next de rhe , aur next ab is euqal to prev
-    }
-    return head;
+    
+    return r;
 }
 
 
