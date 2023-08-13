@@ -18,28 +18,32 @@ struct Node {
 
 
 // } Driver Code Ends
+
 class Solution
 {
     public:
-//         Node *copyList(Node *head)
-//     {
-//         //Write your code here
-//          map<Node*,Node*>mp;  // create a map
-//      // map me isliye mapping kar rhe hai because isse random pointer ko point karana simple hoga // more details see lovebabbar video for idea
-//     int i=0;
-//     Node*ptr=head;   
-//     while(ptr){
-//         mp[ptr]=new Node(ptr->data);  // maping new linkedlist to original linkedlist
-//         ptr=ptr->next;
-//     }
-//     ptr=head;
-//     while(ptr){
-//  mp[ptr]->next=mp[ptr->next];   // new linkedlist ka next original linkedlist ka next 
-//  mp[ptr]->arb=mp[ptr->arb]; //new linkedlist ka random original ll ka random
-//  ptr=ptr->next;
-//     }
-// return mp[head];
-//     }
+        Node *copyList(Node *head)
+    {
+        //Write your code here
+         map<Node*,Node*>mp;  // create a map
+     // map me isliye mapping kar rhe hai because isse random pointer ko point karana simple hoga // more details see lovebabbar video for idea
+    int i=0;
+    Node*ptr=head;   
+    while(ptr){
+        mp[ptr]=new Node(ptr->data);  // maping new linkedlist to original linkedlist
+        ptr=ptr->next;
+    }
+    ptr=head;
+    while(ptr){
+     mp[ptr]->next=mp[ptr->next];   // new linkedlist ka next original linkedlist ka next 
+     mp[ptr]->arb=mp[ptr->arb]; //new linkedlist ka random original ll ka random
+     ptr=ptr->next;
+    }
+return mp[head];
+    }
+
+/*
+space optimized approach -
 
     Node *copyList(Node *head)
     {
@@ -79,8 +83,9 @@ class Solution
         }
         return ans->next;
     }
-
+*/
 };
+
 
 //{ Driver Code Starts.
 
