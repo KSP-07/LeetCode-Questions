@@ -100,26 +100,25 @@ public:
     {
         //code here
         vector<int> ans;
-        stack<Node *> stk ;
         
-        while(!stk.empty() || root != NULL) {
+        stack<Node *> stk;
+        
+        while(!stk.empty() || root!= NULL){
             if(root){
                 stk.push(root);
                 root = root->left;
             }
             else{
-                root = stk.top() ; stk.pop() ;
                 
-                ans.push_back(root->data);
+                root = stk.top() ; stk.pop();
+                ans.push_back(root->data ) ;
                 
-                root = root->right;
+                root = root->right ;
             }
         }
-        return ans;
+        return ans ;
     }
 };
-
-
 
 //{ Driver Code Starts.
 
