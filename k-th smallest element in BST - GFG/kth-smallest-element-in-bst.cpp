@@ -93,60 +93,25 @@ struct Node {
 
 class Solution {
   public:
-  //update fun
-  bool up(Node* root , int i,int k,int &ans){
-      if(i==k){
-          ans=root->data;
-          return true;
-      }
-      return false;
+  
+  void inorder(Node *root , int &K , int &ans){
+      if(!root || K<0) return;
+      
+      inorder(root->left , K , ans);
+      K--;
+      if(K==0) ans = root->data;
+      
+      inorder(root->right , K , ans) ;
   }
-  
-  
-  
-  //morris inorder traversal
-  
-  void solve(Node* root, int i , int k,int &ans, int &flag){
-      if(up(root,i,k,ans)){ flag=1; return;}
-      else{
-          if(root==NULL) return;
-          else{
-              Node* cur=root;
-              while(cur!=NULL){
-                  if(cur->left==NULL){
-                      if(up(cur, ++i , k,ans)){ flag=1;}   //checking if i==k
-                      else cur=cur->right;
-                  }
-                  else{
-                      //finding predecessor
-                      Node *pre=cur->left;
-                      while(pre->right!=NULL && pre->right!=cur) pre=pre->right;
-                      
-                      //now checking if thread is already there or not
-                      if(pre->right==NULL){  //thread not there
-                          pre->right=cur;   //making thread to the curr node i.e from just smaller element of root node to root
-                          cur=cur->left;   //now traversing for the left subtree;
-                      }
-                      else{    //thread is already present
-                        if(up(cur ,++i,k,ans)){ flag=1;}   //checking if now curr element i.e root is req element
-                        pre->right=NULL;         //breaking the thread since we 
-                        cur=cur->right;     //now traversing for the right subtree
-                          
-                      }
-                  }
-              }
-          }
-      }
-  }
-  
     // Return the Kth smallest element in the given BST
-    int KthSmallestElement(Node *root, int k) {
+    int KthSmallestElement(Node *root, int K) {
         // add code here.
-        int ans=0;
-        int flag=0;
-        solve(root, 0,k ,ans,flag);
-        if(flag) return ans;
-        return -1;
+        
+        int ans = -1;
+        
+        inorder(root , K , ans);
+        
+        return ans;
     }
 };
 
