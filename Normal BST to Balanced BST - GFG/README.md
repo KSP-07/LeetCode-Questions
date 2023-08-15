@@ -1,6 +1,6 @@
 # Normal BST to Balanced BST
 ## Easy
-<div class="problems_problem_content__Xm_eO"><p><span style="font-size:20px">Given a&nbsp;Binary&nbsp;Search&nbsp;Tree<strong>,</strong> modify the given BST such that itis balanced and has minimum possible height.</span></p>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:20px">Given a&nbsp;Binary&nbsp;Search&nbsp;Tree<strong>,</strong> modify the given BST such that it is balanced and has minimum possible height.</span></p>
 
 <p><span style="font-size:20px">Examples :</span></p>
 
@@ -33,7 +33,7 @@ Output:
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:</strong><br>
-The task is to complete the function <strong>buildBalancedTree()</strong> which takes root as the input argument, and returns the root of tree after converting the given BST&nbsp;into a balanced BST that has minimum possible height</span><span style="font-size:20px">.</span><span style="font-size:18px"> The driver code will print the height of the updated tree in output itself. </span><br>
+The task is to complete the function <strong>buildBalancedTree()</strong> which takes root as the input argument and returns the root of tree after converting the given BST&nbsp;into a balanced BST with minimum possible height</span><span style="font-size:20px">.</span><span style="font-size:18px"> The driver code will print the height of the updated tree in output itself. </span><br>
 &nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Expected Time Complexity:&nbsp;</strong>O(N)<br>
