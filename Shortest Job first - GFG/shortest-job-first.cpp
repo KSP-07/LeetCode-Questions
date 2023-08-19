@@ -12,17 +12,20 @@ using namespace std;
 
 class Solution {
   public:
-    int solve(vector<int>& bt) {
+    long long solve(vector<int>& bt) {
         // code here
-        sort(bt.begin(), bt.end());
-        int t = 0;
-        int sum = 0;
-        for(int x:bt) {
-            sum += t;
-            t += x;     //ab agle wali process ko kitna wait krna pdega
-            // cout<<sum<<" "<<t<<endl;
+        long long wt = 0 ;
+        
+        sort(bt.begin() , bt.end());
+        
+        int n = bt.size() ;
+        int timeline = 0;
+        for(int i = 0 ; i < n ; i++ ){
+            wt += timeline;
+            timeline += bt[i];
         }
-        return sum / bt.size();
+        
+        return wt/n;
     }
 };
 
@@ -39,7 +42,7 @@ int main() {
             cin >> bt[i];
         }
         Solution obj;
-        int ans = obj.solve(bt);
+        long long ans = obj.solve(bt);
         cout << ans << "\n";
     }
     return 0;
