@@ -11,15 +11,17 @@ class Solution{
 public:
     int getPairsCount(int arr[], int n, int k) {
         // code here
-        unordered_map<int , int> mp;
-        int cnt=0;
-        for(int i=0;i<n;i++){
+        unordered_map<int,int> mp;
+        int cnt = 0 ;
+        for(int i = 0 ; i < n ; i++ ) {
             int x = k - arr[i];
+            
             if(mp[x]){
                 cnt += mp[x];
             }
             mp[arr[i]]++;
         }
+        
         return cnt;
     }
 };
