@@ -9,19 +9,23 @@ class Solution{
 public:
 
 	// Function to find maximum product subarray
-	
-	//taking product from left and right and right to left and returning max among them
 	long long maxProduct(vector<int> arr, int n) {
 	    // code here
-	    long long left_prod =1 , right_prod =1;
-	    long long ans = arr[0];
-	    for(int i = 0; i<n ;i++){
-	        left_prod*= arr[i];
-	        right_prod*= arr[n-1-i];
+	    int i = 0 , j = n-1;
+	    
+	    long long left = 1 , right = 1 ,  ans = -1e9 ;
+	    
+	    while(i< n){
+	        left *= arr[i];
+	        right *= arr[j];
 	        
-	        ans= max(ans , max(left_prod , right_prod));
-	        if(left_prod==0) left_prod= 1 ;
-	        if(right_prod==0) right_prod = 1;
+	        ans = max(ans , max(left, right));
+	        
+	        if(left == 0) left = 1;
+	        if(right == 0 ) right = 1;
+	        
+	        i++;
+	        j--;
 	    }
 	    return ans;
 	}
