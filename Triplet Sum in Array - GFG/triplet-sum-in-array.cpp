@@ -11,17 +11,18 @@ class Solution{
     bool find3Numbers(int A[], int n, int X)
     {
         //Your Code Here
-        sort(A , A +n);
+        sort(A , A+n);
         
-        for(int i =0; i<n; i++){
-            int target = X-A[i];
-            for(int j=i+1 ,  k = n-1; j<k;){
-                if(A[j]+ A[k] > target) k--;
-                else if(A[j]+A[k] < target) j++;
-                else return 1;
+        for(int i = 0 ; i < n ; i++ ) {
+            int left_sum = X - A[i] ;
+            
+            for(int j = i+1 , k = n-1 ; j<k ; ){
+                if( A[j] + A[k] == left_sum) return true;
+                else if(A[j] + A[k] < left_sum) j++;
+                else k--;
             }
         }
-        return 0;
+        return false;
     }
 
 };
